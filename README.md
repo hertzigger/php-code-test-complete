@@ -55,3 +55,33 @@ Feel free to make any changes to the `nextDay` method and add any new code as lo
 still works correctly. However, do not alter the `Item` class or `items` property as those belong to the goblin in the corner who will insta-rage you as he doesn't believe in shared code ownership (you can make the `nextDay` method and `items` property static if you like, we'll cover for you).
 
 Just for clarification, an item can never have its Quality increase above 50, however "Sulfuras" is a legendary item and as such its Quality is 80 and it never alters.
+
+
+## WorkLog
+
+- Add Stockable interface and convert string to consts
+- Create StockItem Class with getters and setters + chaining
+- Update GildedRoseSpec to use constants
+- Uncommented Conjured items unit tests
+- Add StockItem Constructor and age fields
+- Add age method
+- Add abstract factory ItemFactory
+- Did have legendary item that would return from the age function, but as i have added age rate though i could reduce the complexity by setting the ageRate to 0. This is a trade off as legendary item will still go through the quality check
+- Add ConjuredItem
+- Rename nextDay method and create new nextday method
+- Update unit test to use factory
+- Run test and adjust code to fix errors
+- Remove ConjuredItem and replace with BackstagePass
+- Update age method in BackstagePass
+- retry unit tests and update as required
+- cleanup
+
+## Conclusion
+
+Once reviewing the readme and seeing that the application deals with a list of items that are smilier, I knew a good approach would be to use an abstract factory. I also needed somewhere to store constants and to be able to override the Item class, so I choose to create an Interface that would allow me override functionality where needed but also group the objects.
+
+As the project comes with an array of unittests this allowed me to not worry too much about the finer details and build out the overall structure quickly. Once that was done it was as simple as running the unit tests, checking the spec and updating the code where required.
+
+I choose not to use static methods as suggested, as this would make the code harder to test down the line. I really try to avoid using static methods except in special cases like factories and IoC.
+
+Going forward I would want to update StockItem to take on the responsibilities of the Item class (As it breaks open/close principle), we could maybe use a potion of imagining on the Goblin, so he thinks we are still using his class.
